@@ -3,9 +3,12 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "moment": "^2.24.0",
+    "nano-id": "^1.1.0",
     "react": "^16.8.3",
     "react-dom": "^16.8.3",
-    "react-scripts": "2.1.5"
+    "react-scripts": "2.1.5",
+    "recharts": "^1.5.0"
   },
   "scripts": {
     "start": "react-scripts start",
