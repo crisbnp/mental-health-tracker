@@ -3,9 +3,18 @@ import './App.css';
 import Slider from './components/Form';
 import moment from 'moment';
 import nanoId from 'nano-id';
+import { LineChart, Line, CartesianGrid, XAxis, YAxis } from 'recharts';
 
 // date, time, slidervalue, notes, id
-let database = [];
+let database = [
+  {
+    date: '3/8/2019',
+    id: 'WiISdHqcFN',
+    notes: 'asfd',
+    sliderValue: '5',
+    time: '9:31 PM'
+  }
+];
 
 class App extends Component {
   state = {
@@ -42,9 +51,19 @@ class App extends Component {
     });
   };
 
+  convertToChartData(data) {
+    return data.map(item => ({
+      name: item.date,
+      uv: item.sliderValue,
+      pv: 10,
+      amt: 10
+    }));
+  }
+
   render() {
     const { sliderValue, notes, view } = this.state;
     console.log(database);
+    console.log(this.convertToChartData(database));
     return (
       <div className="App">
         {view === 'form' ? (
@@ -64,7 +83,7 @@ class App extends Component {
           </Fragment>
         ) : (
           <Fragment>
-            {database.map(data => (
+            {/* {database.map(data => (
               <div className="overview" key={data.id}>
                 <h2>Here is your overview:</h2>
                 <p>You rated your mood as: {data.sliderValue} </p>
@@ -79,7 +98,17 @@ class App extends Component {
                 <p>Date: {data.date}</p>
                 <p>Time: {data.time}</p>
               </div>
-            ))}
+            ))} */}
+            <LineChart
+              width={600}
+              height={300}
+              data={this.convertToChartData(database)}
+            >
+              <Line type="monotone" dataKey="uv" stroke="#8884d8" />
+              <CartesianGrid stroke="#ccc" />
+              <XAxis dataKey="name" />
+              <YAxis />
+            </LineChart>
           </Fragment>
         )}
         <footer>
