@@ -51,14 +51,13 @@ class App extends Component {
     });
   };
 
-  convertToChartData(data) {
-    return data.map(item => ({
+  convertToChartData = data =>
+    data.map(item => ({
       name: item.date,
       uv: item.sliderValue,
       pv: 10,
       amt: 10
     }));
-  }
 
   render() {
     const { sliderValue, notes, view } = this.state;
